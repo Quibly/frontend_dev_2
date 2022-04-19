@@ -15,7 +15,8 @@
           let storyName = document.querySelector('#storyName').value
           let storyHTML = document.querySelector('#storyText').value
           console.log('Save Story')
-          console.log(storyName, storyHTML)
+          console.log(storyName)
+          console.log(storyHTML)
           localStorage.setItem(storyName,storyHTML)
       }
       function displayStory(){
