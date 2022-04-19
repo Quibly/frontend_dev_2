@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <title>Story Writer</title>
+  <script>
+      function loadStory(){
+          let storyName = document.querySelector('#storyName').value
+          let storyHTML = localStorage.getItem(storyName)
+          console.log(storyHTML)
+          document.querySelector('#storyText').value = storyHTML
+      }
+      function saveStory(){
+          let storyName = document.querySelector('#storyName').value
+          let storyHTML = document.querySelector('#storyText').value
+          localStorage.setItem(storyName,storyHTML)
+      }
+      function displayStory(){
+          let storyHTML = document.querySelector('#storyText').value
+          document.querySelector('#storyDisplay').innerHTML = storyHTML
+      }
+  </script>
+
+  <style>
+      label, input, textarea {display: block; margin: 5px 0 0 10px;}
+      button {margin: 5px 0 5px 10px;}
+      textarea {
+          width: 800px;
+          height: 250px;
+          background-color: lightyellow;
+      }
+  </style>
+</head>
+
+<body>
+    <header>
+        <h1>Story Editor</h1>
+    </header>
+    <label for="sname">Story Name <input type="text" id="storyName" name="sname"></label>
+    <section>
+        <button type="button" onclick="loadStory()" id="editBtn">Find and Edit It</button>
+        <button type="button" onclick="saveStory()" id="saveBtn">Save It</button>
+        <button type="button" onclick="displayStory()" id="displayBtn">Dispaly It</button>
+    </section>
+    <label for="story">Story Text <textarea name="story" id="storyText" placeholder="Write a totally awesome story here."></textarea></label>
+    <section id="storyDisplay"></section>
+</body>
+</html>
