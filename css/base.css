@@ -43,14 +43,14 @@ main {
 
 #imgContainer {
     margin: auto;
-    width: 500px;
-    height: 280px;
+    width: 80%;
 }
 
-img {
+#imgContainer img {
     border-radius: 30px;
     border: 10px solid burlywood;
     width: 100%;
+    height: auto;
 }
 
 ol li {
