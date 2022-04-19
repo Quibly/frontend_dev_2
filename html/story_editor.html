@@ -8,6 +8,7 @@
           let storyName = document.querySelector('#storyName').value
           let storyHTML = localStorage.getItem(storyName)
           console.log('Load Story')
+          console.log(storyName)
           console.log(storyHTML)
           document.querySelector('#storyText').value = storyHTML
       }
