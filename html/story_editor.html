@@ -7,16 +7,21 @@
       function loadStory(){
           let storyName = document.querySelector('#storyName').value
           let storyHTML = localStorage.getItem(storyName)
+          console.log('Load Story')
           console.log(storyHTML)
           document.querySelector('#storyText').value = storyHTML
       }
       function saveStory(){
           let storyName = document.querySelector('#storyName').value
           let storyHTML = document.querySelector('#storyText').value
+          console.log('Save Story')
+          console.log(storyName, storyHTML)
           localStorage.setItem(storyName,storyHTML)
       }
       function displayStory(){
           let storyHTML = document.querySelector('#storyText').value
+          console.log('Display Story')
+          console.log(storyHTML)
           document.querySelector('#storyDisplay').innerHTML = storyHTML
       }
   </script>
