@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 2 Team Assignment</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <input id="input1" type="number" />
+  <button id="button1" onclick="readInput1()">Click</button>
+  <div id="output1"></div>
+
+  <input id="input2" type="number" />
+  <button id="button2" onclick="sumInput2()">Sum</button>
+  <button id="button4" onclick="inputDifference()">Difference</button>
+  <div id="output2"></div>
+
+  <input id="input3" type="number" />
+  <button id="button3" onclick="sumInputs()">+</button>
+  <button id="button5" onclick="multiplyInputs()">*</button>
+  <div id="output3"></div>
+
+  
+
+
+  <script>
+    function readInput1() {
+      const input = document.getElementById('input1').value;
+      const output = document.getElementById('output1');
+      output.innerHTML= input;
+    }
+
+    function sumInput2() {
+      let input = document.getElementById('input2').value;
+      const output = document.getElementById('output2');
+      let number = input;
+      if (number !== NaN) {
+        output.innerHTML = sum(number);
+      } 
+    }
+
+    function sum(num) {
+      let answer = 0;
+      for (let i = 1; i <= num; i++) {
+        answer += i;
+      }
+      return answer;
+    }
+
+    function sumInputs() {
+        let input1 = parseInt(document.getElementById('input1').value);
+        let input2 = parseInt(document.getElementById('input2').value);
+        let input3 = parseInt(document.getElementById('input3').value);
+        let output = document.getElementById('output3');
+        let sum = function() {
+          return input1 + input2 + input3;
+        };
+        output.innerHTML = sum();
+    }
+
+    multiplyInputs = () => {
+        let input1 = parseInt(document.getElementById('input1').value);
+        let input2 = parseInt(document.getElementById('input2').value);
+        let input3 = parseInt(document.getElementById('input3').value);
+        const output = document.getElementById('output3');
+        const product = function() {
+          return input1 * input2 * input3;
+        }
+        output.innerHTML = product();
+    }
+
+    let inputDifference = function() {
+        let input1 = parseInt(document.getElementById('input1').value);
+        let input2 = parseInt(document.getElementById('input2').value);
+        const output = document.getElementById('output2');
+        output.innerHTML = input1 - input2;
+    }
+  </script>
+</body>
+
+</html>
