@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="W04 Team Activity code - Student Project">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W04 Team Activity</title>
+    <style>
+        body {
+            width: 95%;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        h1, h2, #reset {
+            text-align: center;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: 200px 200px 200px;
+            grid-template-rows: 200px 200px 200px;
+            width: 600px;
+            margin: auto;
+        }
+
+        .grid {
+            font-size: 8rem;
+            text-align: center;
+        }
+
+        #grid1 {
+            grid-column: 1/2;
+            grid-row: 1/2;
+            border-right: 5px solid black;
+            border-bottom: 5px solid black;
+        }
+
+        #grid2 {
+            grid-column: 2/3;
+            grid-row: 1/2;
+            border-right: 5px solid black;
+            border-bottom: 5px solid black;
+            border-left: 5px solid black;
+        }
+
+        #grid3 {
+            grid-column: 3/4;
+            grid-row: 1/2;
+            border-bottom: 5px solid black;
+            border-left: 5px solid black;
+        }
+
+        #grid4 {
+            grid-column: 1/2;
+            grid-row: 2/3;
+            border-right: 5px solid black;
+            border-bottom: 5px solid black;
+            border-top: 5px solid black;
+        }
+
+        #grid5 {
+            grid-column: 2/3;
+            grid-row: 2/3;
+            border-right: 5px solid black;
+            border-bottom: 5px solid black;
+            border-left: 5px solid black;
+            border-top: 5px solid black;
+        }
+
+        #grid6 {
+            grid-column: 3/4;
+            grid-row: 2/3;
+            border-bottom: 5px solid black;
+            border-left: 5px solid black;
+            border-top: 5px solid black;
+        }
+
+        #grid7 {
+            grid-column: 1/2;
+            grid-row: 3/4;
+            border-right: 5px solid black;
+            border-top: 5px solid black;
+        }
+
+        #grid8 {
+            grid-column: 2/3;
+            grid-row: 3/4;
+            border-right: 5px solid black;
+            border-left: 5px solid black;
+            border-top: 5px solid black;
+        }
+
+        #grid9 {
+            grid-column: 3/4;
+            grid-row: 3/4;
+            border-left: 5px solid black;
+            border-top: 5px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <h2 id="turn">X turn</h2>
+    <div id="board">
+        <div id="grid1" class="grid"></div>
+        <div id="grid2" class="grid"></div>
+        <div id="grid3" class="grid"></div>
+        <div id="grid4" class="grid"></div>
+        <div id="grid5" class="grid"></div>
+        <div id="grid6" class="grid"></div>
+        <div id="grid7" class="grid"></div>
+        <div id="grid8" class="grid"></div>
+        <div id="grid9" class="grid"></div>
+    </div>
+    <div id="reset">
+        <button id='resetBtn'>Reset</button>
+    </div>
+    <script>
+        let div1 = document.querySelector('#grid1');
+        let div2 = document.querySelector('#grid2');
+        let div3 = document.querySelector('#grid3');
+        let div4 = document.querySelector('#grid4');
+        let div5 = document.querySelector('#grid5');
+        let div6 = document.querySelector('#grid6');
+        let div7 = document.querySelector('#grid7');
+        let div8 = document.querySelector('#grid8');
+        let div9 = document.querySelector('#grid9');
+        let resetBtn = document.querySelector('#resetBtn')
+
+        div1.addEventListener("click",  clickAction);
+        div2.addEventListener("click",  clickAction);
+        div3.addEventListener("click",  clickAction);
+        div4.addEventListener("click",  clickAction);
+        div5.addEventListener("click",  clickAction);
+        div6.addEventListener("click",  clickAction);
+        div7.addEventListener("click",  clickAction);
+        div8.addEventListener("click",  clickAction);
+        div9.addEventListener("click",  clickAction);
+        resetBtn.addEventListener('click', resetBoard);
+
+
+        function clickAction(){
+            let turn = document.querySelector('#turn')
+        
+            if (this.textContent == ''){
+                if (turn.innerHTML == "X turn"){
+                        this.textContent = 'X';
+                        turn.innerHTML = "O turn"
+                }
+                else {
+                    this.textContent = 'O';
+                    turn.innerHTML = "X turn"
+                }
+            }
+        }
+
+        let boxes = [];
+        boxes.push(div1);
+        boxes.push(div2);
+        boxes.push(div3);
+        boxes.push(div4);
+        boxes.push(div5);
+        boxes.push(div6);
+        boxes.push(div7);
+        boxes.push(div8);
+        boxes.push(div9);
+
+        function resetBoard() {
+            boxes.forEach(div => {
+                div.textContent = ''
+            });
+        }
+    </script>
+</body>
+</html>
