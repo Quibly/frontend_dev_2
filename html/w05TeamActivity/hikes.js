@@ -63,27 +63,34 @@ export default class Hikes {
   // show one hike with full details in the parentElement
   showOneHike(hike) {
     const details = document.querySelector('#details');
-    details.appendChild(renderOneHikeFull(hike));
-    document.querySelector('main').appendChild(details);
+    const detailsName = document.querySelector('#detailsName');
+    if (!detailsName) {
+        details.appendChild(renderOneHikeFull(hike));
+    } else if (hike.name !== detailsName.textContent) {
+        details.innerHTML = '';
+        details.appendChild(renderOneHikeFull(hike));
+    };
   }
   // in order to show the details of a hike ontouchend we will need to attach a listener AFTER the list of hikes has been built. The function below does that.
   addHikeListener() {
     // We need to loop through the children of our list and attach a listener to each, remember though that children is a nodeList...not an array. So in order to use something like a forEach we need to convert it to an array.
     const h2List = Array.from(this.parentElement.querySelectorAll('li h2'));
+    const details = document.querySelector('#details');
     h2List.forEach(heading => {
       heading.addEventListener('mouseenter', (event) => {
-        const hike = this.getHikeByName(event.currentTarget.textContent);
-        console.log(hike);
-        this.showOneHike(hike);
+        const hike = this.getHikeByName(event.target.textContent);
+        if (hike.name == event.target.textContent) {
+            details.style.display = 'block';
+            this.showOneHike(hike);
+        }
       });
-      const details = document.querySelector('#details');
       const onMove = (event) => {
-        details.style.left = `${event.pageX}px`;
-        details.style.top = `${event.pageY}px`;
-      }
+        details.style.left = `${event.pageX+5}px`;
+        details.style.top = `${event.pageY+5}px`;
+      };
       heading.addEventListener('mouseleave', (event) => {
         if (event.target.tagName !== 'h2') {
-          details.innerHTML = '';
+          details.style.display = 'none';
         }
       });
       heading.addEventListener('mousemove', onMove);
@@ -122,7 +129,7 @@ function renderOneHikeFull(hike) {
       <div class="text">
       <div>
           <h3>Name</h3>
-          <p>${hike.name}</p>
+          <p id="detailsName">${hike.name}</p>
       </div>
       <div>
           <h3>Distance</h3>
