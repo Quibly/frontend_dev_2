@@ -89,7 +89,7 @@ export default class Hikes {
         details.style.top = `${event.pageY+5}px`;
       };
       heading.addEventListener('mouseleave', (event) => {
-        if (event.target.tagName !== 'h2') {
+        if (event.target.tagName !== '#details') {
           details.style.display = 'none';
         }
       });
