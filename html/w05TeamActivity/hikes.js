@@ -86,7 +86,7 @@ export default class Hikes {
       });
       const onMove = (event) => {
         const width = document.documentElement['clientWidth'];
-        if ((width - parseInt(event.pageX)) < parseInt(details['clientWidth'])) {
+        if ((width - parseInt(event.pageX)) < details['clientWidth']) {
           details.style.left = `${width - details['clientWidth']}px`;
           details.style.top = `${event.pageY+5}px`;
         } else {
