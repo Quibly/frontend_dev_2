@@ -53,6 +53,7 @@
   #details {
       position:absolute;
       /* transform:translate(-20%,-20%); */
-      width: 300px;
+      width: 70%;
+      max-width: 600px;
       background-color: white;
   }

@@ -85,8 +85,14 @@ export default class Hikes {
         }
       });
       const onMove = (event) => {
-        details.style.left = `${event.pageX+5}px`;
-        details.style.top = `${event.pageY+5}px`;
+        const width = document.documentElement['clientWidth'];
+        if ((width - parseInt(event.pageX)) < parseInt(details['clientWidth'])) {
+          details.style.left = `${width - details['clientWidth']}px`;
+          details.style.top = `${event.pageY+5}px`;
+        } else {
+          details.style.left = `${event.pageX+5}px`;
+          details.style.top = `${event.pageY+5}px`;
+        }
       };
       heading.addEventListener('mouseleave', (event) => {
         if (event.target.tagName !== '#details') {
