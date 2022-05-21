@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="An app for tracking goals with a dynamic Todo list.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+    <link rel="stylesheet" href="./css/todos.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <h1>Todos</h1>
+        <div id="app">
+        <div id="taskBlock">
+            <div id="topTask">Task List</div>
+            <div id="tasks"></div>
+        </div>
+            <div id="tabs">
+                <p id="remaining">3 tasks left</p>
+                <p id="all">All</p>
+                <p id="active">Active</p>
+                <p id="completed">Completed</p>
+            </div>
+            <div id="newTask">
+                <input type="text" name="new" id="new" autofocus>
+                <button type="submit" id="newBtn">+</button>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
