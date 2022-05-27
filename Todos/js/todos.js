@@ -44,11 +44,8 @@ export default class Todos {
     addNewTask (event) {
         const currentList = getLS();
         const input = document.querySelector('#new').value;
-        console.log(input);
         const timestamp = new Date().getTime();
-        const completed = new Boolean(false);
-        console.log(completed);
-        const todo = {"id": timestamp, "content": input, "completed": completed};
+        const todo = {"id": timestamp, "content": input, "completed": false};
         currentList.push(todo);
         setLS(currentList);
         document.querySelector('#tasks').appendChild(renderTaskItem(todo));
@@ -66,7 +63,7 @@ function renderTaskItem (task) {
     const card = document.createElement('div');
     let checked;
     let filter = document.querySelector('input[name="filter"]:checked').value;
-    const check = task.completed.value;
+    const check = Boolean(task.completed);
     if (check) {
         checked = 'checked';
     } else if (!check) {
@@ -82,9 +79,8 @@ function renderTaskItem (task) {
     };
     card.innerHTML = `
         <input type='checkbox' class='taskInput' id='a${task.id}' ${checked}>
-        <label class='taskLabel' style='white-space: pre' for='a${task.id}'>${task.content.trim()}</label>
+        <label class='taskLabel' for='a${task.id}'>${task.content.trim()}</label>
         <button type='button' class='taskBtn'>X</button>
-        
     `;
     return card;
 }
