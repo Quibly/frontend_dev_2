@@ -84,11 +84,17 @@ button {
 }
 
 input[type=checkbox]:checked + .taskLabel {
-    color: blue;
+    color: grey;
     text-decoration: line-through;
 }
 
+input[type='checkbox'] {
+    accent-color: grey;
+}
+
 .taskLabel {
+    color: red;
+    font-family: cursive;
     grid-row: 1/2;
     grid-column: 2/3;
     font-size: 1.2rem;
@@ -103,4 +109,18 @@ input[type=checkbox]:checked + .taskLabel {
     justify-self: center;
     align-self: center;
     font-size: 1.5rem;
+}
+
+input[type=radio] {
+    display: none;
+}
+
+.filters {
+    border: 1px solid black;
+    padding: 2px;
+}
+
+input[type=radio]:checked + .filters {
+    background-color: rgb(51, 97, 248);
+    color: white;
 }

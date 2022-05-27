@@ -1,11 +1,12 @@
 import { setLS, getLS } from './ls.js';
-import { addEventDelete } from './utilities.js';
+import { addEventComplete, addEventDelete, tasksRemaining } from './utilities.js';
 //For displaying and refreshing the Todo list
 
 export default class Todos {
     constructor(elementID) {
         this.pElem = document.getElementById(elementID);
         this.todoList = getLS();
+        this.remaining = tasksRemaining();
     }
 
     //method for displaying Todo list
@@ -15,6 +16,8 @@ export default class Todos {
             let card = renderTaskItem(task);
             this.pElem.appendChild(card);
             addEventDelete();
+            addEventComplete();
+            tasksRemaining();
         });
     }
 
@@ -31,19 +34,28 @@ export default class Todos {
         const btn = document.querySelector('#newBtn');
         btn.addEventListener('click', this.addNewTask);
     }
+        // filterButtons.forEach( btn => {
+        //     btn.addEventListener('click', (event) => {
+        //         this.displayList;
+        //     })
+        // })
 
-    //function for adding new task to to Todo list
+    //method for adding new task to to Todo list
     addNewTask (event) {
         const currentList = getLS();
         const input = document.querySelector('#new').value;
+        console.log(input);
         const timestamp = new Date().getTime();
         const completed = new Boolean(false);
+        console.log(completed);
         const todo = {"id": timestamp, "content": input, "completed": completed};
         currentList.push(todo);
-        document.querySelector('#tasks').appendChild(renderTaskItem(todo));
         setLS(currentList);
-        addEventDelete();
+        document.querySelector('#tasks').appendChild(renderTaskItem(todo));
         document.querySelector('#new').value = '';
+        addEventDelete();
+        addEventComplete();
+        tasksRemaining();
     }
     //function for removing task from Todo list
 
@@ -53,18 +65,44 @@ export default class Todos {
 function renderTaskItem (task) {
     const card = document.createElement('div');
     let checked;
-    const check = Boolean(card.completed);
+    let filter = document.querySelector('input[name="filter"]:checked').value;
+    const check = task.completed.value;
     if (check) {
         checked = 'checked';
     } else if (!check) {
         checked = '';
     }
     card.setAttribute('class', 'task');
+    if (filter == 'all') {
+        card.setAttribute('style', 'display: grid');
+    } else if (checked == '' && filter !== 'active') {
+        card.setAttribute('style', 'display: none');
+    } else if (checked == 'checked' && filter !== 'completed') {
+        card.setAttribute('style', 'display: none');
+    };
     card.innerHTML = `
         <input type='checkbox' class='taskInput' id='a${task.id}' ${checked}>
-        <label class='taskLabel' for='a${task.id}'>${task.content.replace(/['" ]+/g, '').trim()}</label>
+        <label class='taskLabel' style='white-space: pre' for='a${task.id}'>${task.content.trim()}</label>
         <button type='button' class='taskBtn'>X</button>
         
     `;
     return card;
+}
+
+//method for adding eventlistener for filter buttons
+export function addEventFilter () {
+    const filterButtons = Array.from(document.querySelectorAll('input[type="radio"]'));
+    filterButtons.forEach( btn => {
+        btn.addEventListener('click', () => {
+            const currentList = getLS();
+            document.querySelector('#tasks').innerHTML = '';
+            currentList.forEach( task => {
+                let card = renderTaskItem(task);
+                document.querySelector('#tasks').appendChild(card);
+                addEventDelete();
+                addEventComplete();
+                tasksRemaining();
+            });
+        });
+    });
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todos</title>
     <link rel="stylesheet" href="./css/todos.css">
+    <link rel="shortcut icon" href="../quiblyFavicon.ico" type="image/x-icon">
 </head>
 <body>
     <header></header>
@@ -17,10 +18,13 @@
             <div id="tasks"></div>
         </div>
             <div id="tabs">
-                <p id="remaining">3 tasks left</p>
-                <p id="all">All</p>
-                <p id="active">Active</p>
-                <p id="completed">Completed</p>
+                <p id="remaining"></p>
+                <input type='radio' name="filter" value="all" id="all" checked></input>
+                <label for="all" class="filters">All</label>
+                <input type='radio' name="filter" value="active" id="active"></input>
+                <label for="active" class="filters">Active</label>
+                <input type='radio' name="filter" value="completed" id="completed"></input>
+                <label for="completed" class="filters">Completed</label>
             </div>
             <div id="newTask">
                 <input type="text" name="new" id="new" autofocus>

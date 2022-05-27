@@ -9,16 +9,48 @@ function addEventDelete () {
         btn.addEventListener('click', (event) => {
             const currentList = getLS();
             const id= event.currentTarget.parentNode.firstChild.nextSibling.id;
-            console.log(id);
             event.target.parentNode.remove();
             currentList.forEach( task => {
                 if (task.id == id.substring(1)) {
                     currentList.splice(currentList.indexOf(task), 1);
                     setLS(currentList);
                 } 
-            })
+            });
+            tasksRemaining();
         });
     });
+}
+
+function addEventComplete () {
+    const completeButtons  = Array.from(document.querySelectorAll('.taskInput'));
+    completeButtons.forEach( btn => {
+        btn.addEventListener('click', (event) => {
+            const id  = event.currentTarget.id;
+            const currentList = getLS();
+            const value = (event.currentTarget.checked);
+            currentList.forEach( task => {
+                if (task.id == id.substring(1)) {
+                    task.completed = event.currentTarget.checked;
+                    setLS(currentList);
+                }
+            });
+            tasksRemaining();
+        });     
+    });
+}
+
+function tasksRemaining () {
+    let amount = 0;
+    const remaining = document.querySelector('#remaining');
+    const currentList = getLS();
+    currentList.forEach( task => {
+        if (task.completed == false) {
+            ++amount
+        }
+    });
+    remaining.textContent = `${amount} tasks left`;
+    setLS(currentList);
+    return amount;
 }
 
 //function for handling completed button
@@ -28,4 +60,4 @@ function addEventDelete () {
 //     })
 // }
 
-export {addEventDelete};
+export {addEventDelete, addEventComplete, tasksRemaining};
