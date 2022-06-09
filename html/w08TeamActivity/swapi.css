@@ -1,0 +1,13 @@
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+}
+
+#people {
+    margin-bottom: 30px;
+}
