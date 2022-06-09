@@ -1,16 +1,16 @@
 const prevBtn = document.querySelector('#prevBtn');
 const nextBtn = document.querySelector('#nextBtn');
 const people = document.querySelector('#people');
+const pageButtons = document.querySelector('#pageButtons');
 let message = document.querySelector('#message');
 let pages = document.querySelector('#pages');
 let page = 1;
 let pageCount = 1;
 
-
-getList(page);
+callPage();
 
 function getList (page) {
-    fetch(`https://swapi.dev/api/people/?page=${page}`)
+    return fetch(`https://swapi.dev/api/people/?page=${page}`)
         .then(res => res.json())
         .then(data => {
             pageCount = Math.ceil(data.count/10);
@@ -21,7 +21,7 @@ function getList (page) {
             });
             people.innerHTML = peopleList.join('');
             getPage(page, pageCount);
-            console.log(data);
+            return pageCount;
         });
 }
 
@@ -48,3 +48,20 @@ nextBtn.addEventListener('click', function () {
         message.textContent = 'There are no more pages.';
     }
 })
+
+function createPageBtns(pages) {
+  for (let i = 1; i <= pages; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = `Pg${i}`;
+    btn.addEventListener('click', function() {
+      page = i;
+      getList(page);
+    })
+    pageButtons.appendChild(btn);
+  }
+}
+
+async function callPage() {
+  const pages = await getList(page);
+  createPageBtns(pages);
+}
