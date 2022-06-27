@@ -1,0 +1,120 @@
+
+/* ----------Header/Footer-------------- */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 98%;
+    margin: 0 1% 0 1%;
+    position: relative;
+    height: 100vmax;
+    padding-top: 160px;
+    padding-bottom: 84px;
+}
+
+h1, h2, label {
+    font-family: 'Skranji', cursive;
+}
+
+h3, h4, p, span, input {
+    font-family: 'Maven Pro', sans-serif;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 150px 1fr 150px;
+    grid-template-rows: 150px;
+    height: 150px;
+    width: 100%;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+}
+
+#ball1 {
+    width: 150px;
+    grid-column: 1/2;
+}
+
+#ball2 {
+    grid-column: 3/4;
+    width: 150px;
+}
+
+header div img {
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(0deg, white 50%, #FF0000 50%);
+}
+
+header h1 {
+    text-align: center;
+    align-self: center;
+    grid-column: 2/3;
+    font-size: 3rem;
+}
+
+footer {
+    color: white;
+    background-color: #3B4CCA;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Skranji', cursive;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/* ------------Main--------------- */
+
+main {
+    display: grid;
+    grid-template-columns: 30% 30% 40%;
+    grid-template-rows: 30% 5% 65%;
+    height: 100%;
+}
+
+#single {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    border: 1px solid #CC0000;
+}
+
+#team {
+    grid-column: 1/2;
+    grid-row: 3/4;
+    border: 1px solid #CC0000;
+}
+
+#filter {
+    grid-column: 2/3;
+    grid-row: 1/4;
+    border: 1px solid #CC0000;
+}
+
+#results {
+    grid-column: 3/4;
+    grid-row: 1/4;
+    border: 1px solid #CC0000;
+}
+
+fieldset, label {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+input, select {
+    height: 44px;
+}
+
+
+
+

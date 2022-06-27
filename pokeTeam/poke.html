@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Pokemon Team Builder">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Team Builder</title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/poke.css">
+    <link rel="stylesheet" href="./css/small.css">
+    <link rel="shortcut icon" href="./quiblyFavicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&family=Skranji&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div id="ball1"><img src="./PokeBall.png" alt="Pokemon Ball"></div>
+        <h1>Pokémon</h1>
+        <div id="ball2"><img src="./PokeBall.png" alt="Pokemon Ball"></div>
+    </header>
+    <main>
+        <div id="team"></div>
+        <div id="single"></div>
+        <div id="filter">
+            <form>
+                <fieldset>
+                    <h2>Search for Pokemon</h2>
+                    <label for="name">by Name<input type="text" id="name"></label>
+                    <label for="ability">by Ability<input type="text" id="ability"></label>
+                    <label for="location">by Location<input type="text" id="location"></label>
+                </fieldset>
+                <fieldset>
+                    <h2>Drop Downs for Filtering</h2>
+                    <label for="type">by Type<select name="type" id="type"></select></label>
+                    <label for="shape">by Shape<select name="shape" id="shape"></select></label>
+                    <label for="habitat">by Habitat<select name="habitat" id="habitat"></select></label>
+                    <label for="color">by Color<select name="color" id="color"></select></label>
+                </fieldset>
+            </form>
+        </div>
+        <div id="results"></div>
+    </main>
+    <footer>
+        <div id="year"></div>
+        <div id="updated"></div>
+    </footer>
+    <script src="./poke.js"></script>
+</body>
+</html>

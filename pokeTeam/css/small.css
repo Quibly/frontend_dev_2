@@ -1,0 +1,18 @@
+@media only screen and (max-width: 550px) {
+
+    #ball2 {
+        display: none;
+        grid-column: unset;
+        width: unset;
+    }
+
+    header  {
+        grid-template-columns: 150px 1fr;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
