@@ -18,8 +18,13 @@ h1, h2, label {
     font-family: 'Skranji', cursive;
 }
 
-h3, h4, p, span, input {
+h3, h4, p, span, input, legend {
     font-family: 'Maven Pro', sans-serif;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 1.4rem;
 }
 
 header {
@@ -114,6 +119,14 @@ fieldset, label {
 
 input, select {
     height: 44px;
+}
+
+button {
+    background-color: #FF0000;
+    height: 44px;
+    font-weight: bold;
+    font-size:1.2rem;
+    color: white;
 }
 
 /* ------------Details------------ */
