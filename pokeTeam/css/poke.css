@@ -204,11 +204,14 @@ input, select {
 }
 
 #resultList li:nth-child(odd) {
-    background-color: #3b4cca4f;
+    /* background-color: #3b4cca4f; */
+    color: white;
+    background-color:#3B4CCA;
 }
 
 #resultList li:nth-child(even) {
-    background-color: #b3a0254f;
+    /* background-color: #b3a0254f; */
+    background-color:#FFDE00;
 }
 
 #nextBtn {
