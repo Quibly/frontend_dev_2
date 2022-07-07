@@ -5,11 +5,11 @@ export default class PokeViews {
     constructor() {
         this.pokemon = new Pokemon();
         this.pokeDetail = this.buildDetail(this.pokemon);
-        this.pokeTeam = '';
+        this.pokeTeam = this.buildTeam();
         this.pokeResults = '';
         this.pokeListen();
     }
-
+    // Build the view for the Detail section
     async buildDetail (pokemonClass=this.pokemon, pokemonId='') {
         await pokemonClass.getByName(pokemonId);
         const pokemon = pokemonClass.detail;
@@ -40,12 +40,13 @@ export default class PokeViews {
             <div id="detailTypes">Type(s): ${types.outerHTML}</div>
             <div id="detailStats">${stats.outerHTML}</div>
             </li>
+            <button type="button" id="addToTeamBtn">Add to Team</button>
         `;
         const single = document.querySelector('#single');
         single.innerHTML ='';
         single.appendChild(card);
     }
-
+    // Build the view for the search result section of the page
     async buildResults (pokemonClass=this.pokemon, url = '') {
         const name = '';
         await pokemonClass.getByName(name, url);
@@ -83,12 +84,39 @@ export default class PokeViews {
         const resultsNames = document.querySelectorAll('.resultsName');
         this.resultsListen(resultsNames);
         this.searchBtnListen();
-            
-        
     }
-
+    async buildTeam () {
+        const card = document.createElement('div');
+        const list = document.createElement('ul');
+        const deleteBtn = document.createElement('button');
+        deleteBtn.setAttribute('type', 'button');
+        deleteBtn.setAttribute('class', 'delTeamMember');
+        deleteBtn.textContent = `&#10008`;
+        const deleteAllBtn = document.createElement('button');
+        deleteAllBtn.setAttribute('type', 'button');
+        deleteAllBtn.setAttribute('id', 'delTeamAll');
+        deleteAllBtn.innerHTML = 'Delete All';
+        const team = this.pokemon.getTeam();
+        console.log(team);
+        for (let i=0; i < team.length; i++) {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `${team[i]}`;
+            listItem.setAttribute('class', 'resultsTeam');
+            list.appendChild(listItem);
+        }
+        card.appendChild(list);
+        const teamDiv = document.querySelector('#team');
+        teamDiv.innerHTML = `<h2>Pokémon Team</h2><p>Add Pokémon to your Team</p>`;
+        if (team !== '' && team !== null) {
+            teamDiv.innerHTML = `
+                <h2>Pokémon Team</h2>
+                ${card.outerHTML}
+                ${deleteAllBtn.outerHTML}
+            `;
+        };
+    }
+    // Event Listener for search button click
     async pokeListen () {
-        // Event Listener for search button click
         const findBtn = document.querySelector('#findBtn');
         findBtn.addEventListener('click', () => {
             const name = document.querySelector('#name');
@@ -100,21 +128,18 @@ export default class PokeViews {
             name.value = '';
         })
     }
-
+    // Event Listener for search results click
     async resultsListen (resultsNames) {
-        // Event Listener for search results click
         resultsNames.forEach(result => {
             result.addEventListener('click', (event) => {
             console.log(event.target.textContent);
-            // await this.pokemon.getByName(event.target.textContent);
             const name = event.target.textContent;
             this.buildDetail(this.pokemon, name);
             });
         });
     }
-
+    // Event Listener for Next/Prev buttons
     async searchBtnListen () {
-        // Event Listener for Next/Prev buttons
         const nextBtn = document.querySelector('#nextBtn');
         const prevBtn = document.querySelector('#prevBtn');
         nextBtn.addEventListener('click', (event) => {
@@ -130,5 +155,4 @@ export default class PokeViews {
             }
         })        
     }
-    
 }

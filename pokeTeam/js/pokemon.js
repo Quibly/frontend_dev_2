@@ -42,9 +42,8 @@ export default class Pokemon {
             temp.innerHTML = '';
             temp.innerHTML = `<h2>${this.results}</h2>`;
         }
-        console.log(this.results);
     }
-
+    // Initialize list of all Pokemon
     initDatabase () {
         this.getByName();
         console.log(this.names);
@@ -74,16 +73,36 @@ export default class Pokemon {
             }
         }
     }
-
+    // Get all of the Pokemon listed on the API
     async getAll () {
         let output;
         await this.count;
         output = await geturl(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${this.count}`);
     }
-
     // Get the total number of Pokemon
     async getCount () {
         const temp = await geturl('https://pokeapi.co/api/v2/pokemon/');
         this.count = await temp.count;
+    }
+    // Get Team from Local Storage
+    getTeam () {
+        if (localStorage.getItem('pokeTeam')) { this.team = localStorage.getItem('pokeTeam'); }
+        return this.team;
+    }
+    // Set Team for Local Storage
+    appendTeam (name) {
+        if (!localStorage.getItem('pokeTeam')) {
+            this.team = '';
+            this.team.push(name);
+            localStorage.setItem('pokeTeam', this.team);
+        } else {
+            this.team.push(name);
+            localStorage.setItem('pokeTeam', this.team);
+        }
+    }
+    // Delete current team build
+    clearTeam () {
+        this.team = '';
+        localStorage.pokeTeam = '';
     }
 }
