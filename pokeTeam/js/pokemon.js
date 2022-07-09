@@ -52,7 +52,6 @@ export default class Pokemon {
     // Get Pokemon by Name
     async getByName (name='', url='') {
         const nameInput = document.querySelector('#name');
-        console.log(nameInput.value);
         let output;
         if (nameInput.validity.patternMismatch) {
             nameInput.setCustomValidity('Expecting an alpha text entry');
@@ -67,7 +66,7 @@ export default class Pokemon {
                 output = await geturl(url);
                 this.results = output;
             } else {
-                output = await geturl(`https://pokeapi.co/api/v2/pokemon/${name}`);
+                output = await geturl(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`);
                 console.log(output);
                 if(output !== undefined) {
                     this.detail = output;
