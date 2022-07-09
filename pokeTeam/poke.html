@@ -25,17 +25,18 @@
             <form>
                 <fieldset>
                     <legend>Search for Pokémon</legend>
-                    <label for="name">by Name<input type="text" id="name"></label>
+                    <label for="name">by Name<input type="text" id="name" pattern="[A-Za-z-]*"></label>
+                    <p id="inputError"></p>
                     <p>If you leave 'by Name' field blank this will search all Pokémon.</p>
                     <button type="button" id="findBtn">Find Pokemon</button>
                 </fieldset>
-                <fieldset>
+                <!-- <fieldset>
                     <legend>Drop Downs for Filtering</legend>
                     <label for="type">by Type<select name="type" id="type"></select></label>
                     <label for="shape">by Shape<select name="shape" id="shape"></select></label>
                     <label for="habitat">by Habitat<select name="habitat" id="habitat"></select></label>
                     <label for="color">by Color<select name="color" id="color"></select></label>
-                </fieldset>
+                </fieldset> -->
             </form>
         </div>
         <div id="single"></div>

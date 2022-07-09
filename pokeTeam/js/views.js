@@ -12,11 +12,16 @@ export default class PokeViews {
     // Build the view for the Detail section
     async buildDetail (pokemonClass=this.pokemon, pokemonId='') {
         await pokemonClass.getByName(pokemonId);
+        console.log(pokemonClass);
         const pokemon = pokemonClass.detail;
+        console.log(pokemon);
         const name = pokemon.name;
         const experience = pokemon.base_experience;
         const weight = pokemon.weight;
-        const sprite = pokemon.sprites.front_default;
+        let sprite = pokemon.sprites.front_default;
+        if (sprite == null) {
+            sprite = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png';
+        }
         let types = document.createElement('ul');
         let stats = document.createElement('ul');
         for (let i=0; i < pokemon.types.length; i++) {
@@ -45,6 +50,7 @@ export default class PokeViews {
         const single = document.querySelector('#single');
         single.innerHTML ='';
         single.appendChild(card);
+        this.addToTeamListen();
     }
     // Build the view for the search result section of the page
     async buildResults (pokemonClass=this.pokemon, url = '') {
@@ -80,46 +86,47 @@ export default class PokeViews {
             ${resultList.outerHTML}
             ${prevBtn.outerHTML}
             ${nextBtn.outerHTML}
+            <p id="resultsMessage"></p>
         `;
         const resultsNames = document.querySelectorAll('.resultsName');
         this.resultsListen(resultsNames);
         this.searchBtnListen();
     }
+    // Build the pokemon team view
     async buildTeam () {
         const card = document.createElement('div');
         const list = document.createElement('ul');
-        const deleteBtn = document.createElement('button');
-        deleteBtn.setAttribute('type', 'button');
-        deleteBtn.setAttribute('class', 'delTeamMember');
-        deleteBtn.textContent = `&#10008`;
         const deleteAllBtn = document.createElement('button');
         deleteAllBtn.setAttribute('type', 'button');
         deleteAllBtn.setAttribute('id', 'delTeamAll');
         deleteAllBtn.innerHTML = 'Delete All';
-        const team = this.pokemon.getTeam();
-        console.log(team);
-        for (let i=0; i < team.length; i++) {
+        this.pokeTeam = this.pokemon.getTeam();
+        console.log(this.pokeTeam);
+        for (let i=0; i < this.pokeTeam.length; i++) {
             const listItem = document.createElement('li');
-            listItem.innerHTML = `${team[i]}`;
+            listItem.innerHTML = `<p>${this.pokeTeam[i].name}</p><div><img src="${this.pokeTeam[i].image}" alt="Pokemon ${this.pokeTeam[i].name}"></img></div><p>${this.pokeTeam[i].type} type</p><p class="garbage">⌫</p>`;
             listItem.setAttribute('class', 'resultsTeam');
             list.appendChild(listItem);
         }
         card.appendChild(list);
         const teamDiv = document.querySelector('#team');
         teamDiv.innerHTML = `<h2>Pokémon Team</h2><p>Add Pokémon to your Team</p>`;
-        if (team !== '' && team !== null) {
+        if (this.pokeTeam !== '' && this.pokeTeam !== null && this.pokeTeam.length !== 0) {
             teamDiv.innerHTML = `
                 <h2>Pokémon Team</h2>
                 ${card.outerHTML}
                 ${deleteAllBtn.outerHTML}
             `;
         };
+        this.delTeamMemberListen();
+        this.delTeamListen();
     }
     // Event Listener for search button click
     async pokeListen () {
         const findBtn = document.querySelector('#findBtn');
         findBtn.addEventListener('click', () => {
             const name = document.querySelector('#name');
+            console.log(name.value);
             if (name.value == '') {
                 this.buildResults();
             } else {
@@ -154,5 +161,39 @@ export default class PokeViews {
                 this.buildResults(this.pokemon, url);
             }
         })        
+    }
+
+    async addToTeamListen () {
+        const addToTeamBtn = document.querySelector('#addToTeamBtn');
+        const name = document.querySelector('#detail h2').textContent;
+        const image = document.querySelector('#detailImg img').getAttribute('src');
+        const type = document.querySelector('#detailTypes ul li:nth-child(1)').textContent;
+        addToTeamBtn.addEventListener('click', (event) => {
+            this.pokemon.appendTeam(name, image, type);
+            this.buildTeam();
+        })
+    }
+
+    delTeamMemberListen () {
+        const delBtn = Array.from(document.querySelectorAll('.garbage'));
+        delBtn.forEach(element => {
+            element.addEventListener('click', (event) => {
+                const listItem = event.target.parentNode;
+                this.pokemon.clearTeamMember(listItem.children[0].textContent);
+                this.buildTeam();
+            });
+        });
+    }
+
+    delTeamListen () {
+        const delBtn = document.querySelector('#delTeamAll');
+        if(delBtn) {
+            delBtn.addEventListener('click', (event) => {
+                console.log('delete team');
+                this.pokemon.clearTeam();
+                event.target.parentNode.innerHTML = '';
+                this.buildTeam();
+            });
+        }
     }
 }
