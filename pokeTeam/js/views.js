@@ -189,7 +189,6 @@ export default class PokeViews {
         const delBtn = document.querySelector('#delTeamAll');
         if(delBtn) {
             delBtn.addEventListener('click', (event) => {
-                console.log('delete team');
                 this.pokemon.clearTeam();
                 event.target.parentNode.innerHTML = '';
                 this.buildTeam();

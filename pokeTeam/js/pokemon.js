@@ -63,11 +63,9 @@ export default class Pokemon {
                 this.results = output;
             } else {
                 output = await geturl(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`);
-                console.log(output);
                 if(output !== undefined) {
                     this.detail = output;
                 }
-                console.log(this.detail);
             }
         }
     }
@@ -90,7 +88,6 @@ export default class Pokemon {
     // Set Team for Local Storage
     appendTeam (newName, newImage, newType) {
         const currentTeam = this.getTeam();
-        console.log(currentTeam.length);
         let check = false;
 
         currentTeam.forEach(pokemon => {
