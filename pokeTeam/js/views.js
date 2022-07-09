@@ -12,9 +12,7 @@ export default class PokeViews {
     // Build the view for the Detail section
     async buildDetail (pokemonClass=this.pokemon, pokemonId='') {
         await pokemonClass.getByName(pokemonId);
-        console.log(pokemonClass);
         const pokemon = pokemonClass.detail;
-        console.log(pokemon);
         const name = pokemon.name;
         const experience = pokemon.base_experience;
         const weight = pokemon.weight;
@@ -60,7 +58,6 @@ export default class PokeViews {
         const prev = page.previous;
         const next = page.next;
         const pokemon = page.results;
-        console.log(pokemon);
         const resultList = document.createElement('ul');
         resultList.setAttribute('id', 'resultList');
         for (let i=0; i < pokemon.length; i++) {
@@ -101,7 +98,6 @@ export default class PokeViews {
         deleteAllBtn.setAttribute('id', 'delTeamAll');
         deleteAllBtn.innerHTML = 'Delete All';
         this.pokeTeam = this.pokemon.getTeam();
-        console.log(this.pokeTeam);
         for (let i=0; i < this.pokeTeam.length; i++) {
             const listItem = document.createElement('li');
             listItem.innerHTML = `<p>${this.pokeTeam[i].name}</p><div><img src="${this.pokeTeam[i].image}" alt="Pokemon ${this.pokeTeam[i].name}"></img></div><p>${this.pokeTeam[i].type} type</p><p class="garbage">⌫</p>`;
@@ -126,7 +122,6 @@ export default class PokeViews {
         const findBtn = document.querySelector('#findBtn');
         findBtn.addEventListener('click', () => {
             const name = document.querySelector('#name');
-            console.log(name.value);
             if (name.value == '') {
                 this.buildResults();
             } else {
@@ -139,7 +134,6 @@ export default class PokeViews {
     async resultsListen (resultsNames) {
         resultsNames.forEach(result => {
             result.addEventListener('click', (event) => {
-            console.log(event.target.textContent);
             const name = event.target.textContent;
             this.buildDetail(this.pokemon, name);
             });
@@ -151,13 +145,13 @@ export default class PokeViews {
         const prevBtn = document.querySelector('#prevBtn');
         nextBtn.addEventListener('click', (event) => {
             const url = event.target.getAttribute('data-next');
-            if (url !== null) {
+            if (url !== 'null') {
                 this.buildResults(this.pokemon, url);
             }
         })
         prevBtn.addEventListener('click', (event) => {
             const url = event.target.getAttribute('data-prev');
-            if (url !== null) {
+            if (url !== 'null') {
                 this.buildResults(this.pokemon, url);
             }
         })        

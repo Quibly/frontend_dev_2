@@ -51,19 +51,19 @@
 
     #team {
         padding-bottom: 50px;
-        order: 1;
+        order: 4;
     }
 
     #single {
-        order: 2;
-    }
-
-    #filter {
         order: 3;
     }
 
+    #filter {
+        order: 1;
+    }
+
     #results {
-        order: 4;
+        order: 2;
     }
 
 

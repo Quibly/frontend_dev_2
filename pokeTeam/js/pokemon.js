@@ -15,7 +15,6 @@ export default class Pokemon {
 
     // Initialize Team List
     initTeam () {
-        console.log('initTeam');
         if (localStorage.getItem('pokeTeam') !== null && localStorage.getItem('pokeTeam') !== '') {
             this.team = JSON.parse(localStorage.getItem('pokeTeam'));
         } else {
@@ -25,14 +24,11 @@ export default class Pokemon {
 
     // Initialize Detail List
     async initDetail () {
-        console.log(this.team);
-        console.log(this.detail);
         if (this.team == '' || this.team.length == 0) {
             this.detail = await geturl('https://pokeapi.co/api/v2/pokemon/1');
         } else if (this.team !== '' || this.team.length !== 0) {
             this.detail = await geturl(`https://pokeapi.co/api/v2/pokemon/${this.team[0].name}`);
         }
-        console.log(this.detail);
     }
     
     // Initialize Results List
