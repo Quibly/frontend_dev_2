@@ -95,7 +95,7 @@ export default class Pokemon {
     // Set Team for Local Storage
     appendTeam (newName, newImage, newType) {
         const currentTeam = this.getTeam();
-        console.log(currentTeam);
+        console.log(currentTeam.length);
         let check = false;
 
         currentTeam.forEach(pokemon => {
@@ -115,6 +115,14 @@ export default class Pokemon {
         } else if (check == true) {
             const message = document.querySelector('#addToTeamBtn');
             message.textContent = "Can't add duplicates";
+            message.setAttribute('class', 'alerted');
+            setTimeout(function() {
+                message.textContent = 'Add to Team';
+                message.setAttribute('class', '');
+            }, 5000);
+        } else if (currentTeam.length >= 6) {
+            const message = document.querySelector('#addToTeamBtn');
+            message.textContent = "Team Max is 6";
             message.setAttribute('class', 'alerted');
             setTimeout(function() {
                 message.textContent = 'Add to Team';

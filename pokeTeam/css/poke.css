@@ -96,7 +96,7 @@ main {
 }
 
 #team {
-    grid-column: 2/3;
+    grid-column: 3/4;
     grid-row: 1/4;
     min-width: 370px;
 }
@@ -110,7 +110,7 @@ main {
 }
 
 #results {
-    grid-column: 3/4;
+    grid-column: 2/3;
     grid-row: 1/4;
 }
 
@@ -231,6 +231,7 @@ button {
 
 #results {
     padding: 20px;
+    position: relative;
 }
 
 #resultList {
