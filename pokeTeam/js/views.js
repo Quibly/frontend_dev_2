@@ -120,15 +120,21 @@ export default class PokeViews {
     // Event Listener for search button click
     async pokeListen () {
         const findBtn = document.querySelector('#findBtn');
+        const name = document.querySelector('#name');
         findBtn.addEventListener('click', () => {
-            const name = document.querySelector('#name');
             if (name.value == '') {
                 this.buildResults();
             } else {
                 this.buildDetail(this.pokemon, name.value);    
             }
             name.value = '';
-        })
+        });
+        name.addEventListener('keypress', function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.querySelector('#findBtn').click();
+            }
+        });
     }
     // Event Listener for search results click
     async resultsListen (resultsNames) {

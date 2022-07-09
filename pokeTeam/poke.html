@@ -22,10 +22,10 @@
     <main>
         <div id="team"></div>
         <div id="filter">
-            <form>
+            <form id="searchForm">
                 <fieldset>
                     <legend>Search for Pokémon</legend>
-                    <label for="name">by Name<input type="text" id="name" pattern="[A-Za-z-]*"></label>
+                    <label for="name">by Name<input type="text" id="name" pattern="[A-Za-z-]*" autofocus></label>
                     <p id="inputError"></p>
                     <p>If you leave 'by Name' field blank this will search all Pokémon.</p>
                     <button type="button" id="findBtn">Find Pokemon</button>
