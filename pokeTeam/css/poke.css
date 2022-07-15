@@ -15,6 +15,15 @@ body {
     min-width: 330px;
 }
 
+button, .resultsTeam p:nth-child(4), .resultsName {
+    cursor: pointer;
+    transition: transform .5s;
+}
+
+button:hover, .resultsTeam p:nth-child(4):hover, .resultsName:hover {
+    transform: scale(1.1);
+} 
+
 h1, h2, label {
     font-family: 'Skranji', cursive;
 }
@@ -260,6 +269,10 @@ button {
 #nextBtn {
     position: absolute;
     right: 20px;
+}
+
+.resultsName:hover {
+    cursor: pointer;
 }
 
 /* -------------Team Display------------------- */

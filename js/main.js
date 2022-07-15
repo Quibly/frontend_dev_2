@@ -52,6 +52,10 @@ const links = [
     {
         label: "Week 12",
         url: "week12.html"
+    },
+    {
+        label: "Week 13 - Block 2 Challenge - Pokedex App",
+        url: "week13.html"
     }
 ]
 
